@@ -10,7 +10,7 @@ results/%:: data/%.bam
 	svaba run \
                 -t $prereq \
                 -p $NT \
-                -L $MR \
+		-L $MR \
                 -I \
                 -a "results/"$stem".build" \
                 -G $REFERENCE \
@@ -19,3 +19,7 @@ results/%:: data/%.bam
 	NEWNAME=`echo $file | sed "s#.build##"`
 	mv -- "$file" "$NEWNAME"
 	done
+
+### Add a "clean" recipe to quickly remove results directory
+clean:V:
+	rm -r results/
